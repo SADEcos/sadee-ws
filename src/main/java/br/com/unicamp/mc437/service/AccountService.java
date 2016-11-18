@@ -19,15 +19,7 @@ public class AccountService {
         this.accountDAO = accountDAO;
     }
 
-    public Account login(final Account account) throws GeneralServiceErrorException{
-        if (account.getEmail() == null) {
-            throw new AccountException();
-        }
-        // TODO
-        return null;
-    }
-
-    public Account getAccountById(Long id) {
-        return accountDAO.getAccountById(id);
+    public Account accountByEmailAndPassword(final String email, final String password) {
+        return accountDAO.getAccountByEmailAndPassword(email, password);
     }
 }

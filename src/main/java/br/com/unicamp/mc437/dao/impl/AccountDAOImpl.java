@@ -15,6 +15,7 @@ import java.util.List;
 public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
 
     private static final String SELECT_ACCOUNT_BY_ID_QUERY = "SELECT * FROM account WHERE account_id = :id";
+    private static final String SELECT_ACCOUNT_BY_EMAIL_AND_PASSWORD = "SELECT * FROM account WHERE email = :email AND password = :password";
 
     @Override
     public Account getAccountById(Long id) {
@@ -24,6 +25,21 @@ public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
 
         List<Account> accountList = new NamedParameterJdbcTemplate(this.getJdbcTemplate()).query(SELECT_ACCOUNT_BY_ID_QUERY,
                 params, new AccountRowMapper());
+
+        if (accountList == null || accountList.isEmpty()) {
+            return null;
+        }
+        return accountList.get(0);
+    }
+
+    @Override
+    public Account getAccountByEmailAndPassword(String email, String password) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("email", email);
+        params.addValue("password", password);
+
+        List<Account> accountList = new NamedParameterJdbcTemplate(this.getJdbcTemplate()).
+                query(SELECT_ACCOUNT_BY_EMAIL_AND_PASSWORD, params, new AccountRowMapper());
 
         if (accountList == null || accountList.isEmpty()) {
             return null;
