@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -25,6 +27,20 @@ public class AccountController {
     @Autowired
     public void setAccountService(final AccountService accountService) {
         this.accountService = accountService;
+    }
+    
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<List<Account> > searchDev(){
+    	final List<Account> users = accountService.accounts();
+    	
+    	return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/dev/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Account> getDev(String id){
+    	final Account user = accountService.accountById(id);
+
+    	return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)

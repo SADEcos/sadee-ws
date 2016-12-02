@@ -8,6 +8,7 @@ import br.com.unicamp.mc437.model.Account;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -54,6 +55,22 @@ public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
         query.add(Restrictions.eq("email", email));
         Account account = (Account) query.uniqueResult();
         return account;
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Override
+    public List<Account> getAccounts(){
+    	Criteria query = buildQuery();
+    	query.setProjection(Projections.property("name"))
+    	.setProjection(Projections.property("id"))
+    	.setProjection(Projections.property("email"))
+    	.setProjection(Projections.property("busy"))
+    	.setProjection(Projections.property("course"))
+    	.setProjection(Projections.property("availability"))
+    	.setProjection(Projections.property("university"))
+    	.setProjection(Projections.property("knowledgeList"));
+    	
+    	return query.list();
     }
 
     @Override

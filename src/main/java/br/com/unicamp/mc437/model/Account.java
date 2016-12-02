@@ -37,6 +37,8 @@ public class Account extends Base {
     private String obs;
     @Column(name = "COURSE", nullable = false)
     private String course;
+    @Column(name = "BUSY", nullable = false)
+    private String busy;
 	@Column(name = "UNIVERSITY", nullable = false)
     @OneToOne
     private University university;
