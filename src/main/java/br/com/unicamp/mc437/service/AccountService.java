@@ -9,20 +9,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class AccountService {
 
+    @Autowired
     private AccountDAO accountDAO;
 
-    @Autowired
-    public void setAccountDAO(AccountDAO accountDAO) {
-        this.accountDAO = accountDAO;
-    }
-
+    @Transactional
     public Account accountByEmailAndPassword(final String email, final String password) {
         return accountDAO.getAccountByEmailAndPassword(email, password);
     }
-    
+
+    @Transactional
     public void cadastro(Account account){
         String hashedPwd = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt());
         account.setPassword(hashedPwd);

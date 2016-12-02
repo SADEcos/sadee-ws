@@ -1,10 +1,16 @@
 package br.com.unicamp.mc437.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "ACCOUNT")
 public class Account extends Base{
 
+    @Column(name = "NAME")
     private String name;
     private String gender;
     private String email;
