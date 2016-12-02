@@ -1,5 +1,6 @@
 package br.com.unicamp.mc437.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,9 +28,16 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public void novo(@RequestBody Account account){
-        accountService.cadastro(account);
+    public void novo(@RequestBody Account account) {
+        if (null != account) {
+            accountService.cadastro(account);
+        }
+    }
 
+    @RequestMapping(value = "/teste/{}", method = RequestMethod.POST)
+    public void teste(@RequestBody String teste) {
+        String t = teste;
+        return;
     }
 
     @RequestMapping("/hello")

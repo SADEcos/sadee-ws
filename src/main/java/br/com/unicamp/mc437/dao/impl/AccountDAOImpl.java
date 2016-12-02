@@ -1,13 +1,14 @@
 package br.com.unicamp.mc437.dao.impl;
 
+import br.com.unicamp.mc437.configuration.HibernateConfiguration;
 import br.com.unicamp.mc437.dao.AbstractDAO;
 import br.com.unicamp.mc437.dao.AccountDAO;
 import br.com.unicamp.mc437.jdbc.AccountRowMapper;
 import br.com.unicamp.mc437.model.Account;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -19,14 +20,19 @@ import java.util.List;
 public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
 
     @Autowired
+    private HibernateConfiguration hibernateConfiguration;
+
     private Session session;
 
     private static final String SELECT_ACCOUNT_BY_ID_QUERY = "SELECT * FROM account WHERE account_id = :id";
+
     private static final String SELECT_ACCOUNT_BY_EMAIL_AND_PASSWORD = "SELECT * FROM account WHERE email = :email AND password = :password";
 
     private Criteria buildQuery() {
-        return session.createCriteria(AccountDAOImpl.class);
+        session = hibernateConfiguration.getSessionFactory().openSession();
+        return session.createCriteria(AccountDAO.class);
     }
+
     @Override
     public Account getAccountById(Long id) {
 
@@ -44,22 +50,14 @@ public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
 
     @Override
     public Account getAccountByEmailAndPassword(String email, String password) {
-        MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("email", email);
-        params.addValue("password", password);
-
-        List<Account> accountList = new NamedParameterJdbcTemplate(this.getJdbcTemplate()).
-                query(SELECT_ACCOUNT_BY_EMAIL_AND_PASSWORD, params, new AccountRowMapper());
-
-        if (accountList == null || accountList.isEmpty()) {
-            return null;
-        }
-        return accountList.get(0);
+        Criteria query = buildQuery();
+        query.add(Restrictions.eq("email", email));
+        Account account = (Account) query.uniqueResult();
+        return account;
     }
-    
+
     @Override
     public void criar(Account account) {
         session.saveOrUpdate(account);
-    	return;
     }
 }

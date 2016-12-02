@@ -20,7 +20,7 @@ public class AccountService {
     }
 
     @Transactional
-    public void cadastro(Account account){
+    public void cadastro(Account account) {
         String hashedPwd = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt());
         account.setPassword(hashedPwd);
         accountDAO.criar(account);

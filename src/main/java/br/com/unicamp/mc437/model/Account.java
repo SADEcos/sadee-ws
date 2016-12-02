@@ -1,26 +1,33 @@
 package br.com.unicamp.mc437.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "ACCOUNT")
-public class Account extends Base{
+public class Account extends Base {
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
+    @Column(name = "GENDER", nullable = false)
     private String gender;
+    @Column(name = "EMAIL", nullable = false)
     private String email;
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
+    @Column(name = "PHONE", nullable = false)
     private String phone;
+    @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDate;
+    @Column(name = "IMAGE_URL", nullable = false)
     private String imageUrl;
-
+    @Column(name = "UNIVERSITY", nullable = false)
+    @OneToOne
     private University university;
+    @OneToMany
     private List<Project> projects;
+    @OneToMany
     private List<Knowledge> knowledgeList;
 
     public String getName() {
