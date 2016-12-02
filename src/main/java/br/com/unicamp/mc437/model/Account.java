@@ -1,7 +1,6 @@
 package br.com.unicamp.mc437.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -36,7 +35,9 @@ public class Account extends Base {
     private String conpec;
     @Column(name = "OBS", nullable = false)
     private String obs;
-    @Column(name = "UNIVERSITY", nullable = false)
+    @Column(name = "COURSE", nullable = false)
+    private String course;
+	@Column(name = "UNIVERSITY", nullable = false)
     @OneToOne
     private University university;
     @OneToMany
@@ -76,13 +77,21 @@ public class Account extends Base {
         this.phone = phone;
     }
     
-    public String getHomePhone() {
-        return homephone;
-    }
+    public String getHomephone() {
+		return homephone;
+	}
 
-    public void setHomePhone(String homephone) {
-        this.homephone = homephone;
-    }
+	public void setHomephone(String homephone) {
+		this.homephone = homephone;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
 
     public University getUniversity() {
         return university;
