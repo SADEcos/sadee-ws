@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/fj28
+            jdbc:mysql://127.0.0.1:3306 
         </property>
         <property name="hibernate.connection.driver_class">
             com.mysql.jdbc.Driver
