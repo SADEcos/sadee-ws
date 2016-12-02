@@ -8,17 +8,15 @@ import java.sql.SQLException;
 
 public class AccountRowMapper implements RowMapper<Account> {
 
-    private static final String COLUMN_FIRST_NAME = "first_name";
-    private static final String COLUMN_LAST_NAME = "last_name";
-    private static final String COLUMN_USERNAME = "username";
+    private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_USERNAME = "email";
 
     @Override
     public Account mapRow(ResultSet resultSet, int i) throws SQLException {
         Account account = new Account();
 
-        account.setFirstName(resultSet.getString(COLUMN_FIRST_NAME));
-        account.setLastName(resultSet.getString(COLUMN_LAST_NAME));
-        account.setUsername(resultSet.getString(COLUMN_USERNAME));
+        account.setName(resultSet.getString(COLUMN_NAME));
+        account.setEmail(resultSet.getString(COLUMN_USERNAME));
 
         return account;
     }

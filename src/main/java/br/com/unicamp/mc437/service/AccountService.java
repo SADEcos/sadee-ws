@@ -19,13 +19,13 @@ public class AccountService {
         this.accountDAO = accountDAO;
     }
 
-    public Account getAccountById(Long id) {
-        return accountDAO.getAccountById(id);
+    public Account accountByEmailAndPassword(final String email, final String password) {
+        return accountDAO.getAccountByEmailAndPassword(email, password);
     }
     
     public void cadastro(Account account){
-        String hashedPwd = BCrypt.hashpw(account.getSenha(), BCrypt.gensalt());
-        account.setSenha(hashedPwd);
+        String hashedPwd = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt());
+        account.setPassword(hashedPwd);
         accountDAO.criar(account);
     }
 }
