@@ -10,18 +10,32 @@ public class Account extends Base {
 
     @Column(name = "NAME", nullable = false)
     private String name;
-    @Column(name = "GENDER", nullable = false)
-    private String gender;
     @Column(name = "EMAIL", nullable = false)
     private String email;
     @Column(name = "PASSWORD", nullable = false)
     private String password;
     @Column(name = "PHONE", nullable = false)
     private String phone;
-    @Column(name = "BIRTH_DATE", nullable = false)
-    private Date birthDate;
-    @Column(name = "IMAGE_URL", nullable = false)
-    private String imageUrl;
+    @Column(name = "HOME_PHONE", nullable = false)
+    private String homephone;
+    @Column(name = "CPF", nullable = false)
+    private String cpf;
+    @Column(name = "RG", nullable = false)
+    private String rg;
+    @Column(name = "INTERNSHIP", nullable = false)
+    private String internship;
+    @Column(name = "UNDERGRADUATE", nullable = false)
+    private String undergraduate;
+    @Column(name = "AVAILABILITY", nullable = false)
+    private String availability;
+    @Column(name = "LINKEDIN", nullable = false)
+    private String linkedin;
+    @Column(name = "ADDRESS", nullable = false)
+    private String address;
+    @Column(name = "CONPEC", nullable = false)
+    private String conpec;
+    @Column(name = "OBS", nullable = false)
+    private String obs;
     @Column(name = "UNIVERSITY", nullable = false)
     @OneToOne
     private University university;
@@ -54,14 +68,6 @@ public class Account extends Base {
         this.password = password;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -69,29 +75,13 @@ public class Account extends Base {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public Date getBirthdate() {
-        return birthDate;
+    
+    public String getHomePhone() {
+        return homephone;
     }
 
-    public void setBirthdate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setHomePhone(String homephone) {
+        this.homephone = homephone;
     }
 
     public University getUniversity() {
@@ -117,4 +107,76 @@ public class Account extends Base {
     public void setKnowledgeList(List<Knowledge> knowledgeList) {
         this.knowledgeList = knowledgeList;
     }
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getInternship() {
+		return internship;
+	}
+
+	public void setInternship(String internship) {
+		this.internship = internship;
+	}
+
+	public String getUndergraduate() {
+		return undergraduate;
+	}
+
+	public void setUndergraduate(String undergraduate) {
+		this.undergraduate = undergraduate;
+	}
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
+
+	public String getLinkedin() {
+		return linkedin;
+	}
+
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getConpec() {
+		return conpec;
+	}
+
+	public void setConpec(String conpec) {
+		this.conpec = conpec;
+	}
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
 }
