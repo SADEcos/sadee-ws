@@ -5,7 +5,6 @@ import br.com.unicamp.mc437.dao.AbstractDAO;
 import br.com.unicamp.mc437.dao.AccountDAO;
 import br.com.unicamp.mc437.jdbc.AccountRowMapper;
 import br.com.unicamp.mc437.model.Account;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
@@ -22,6 +21,7 @@ public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
 
     @Autowired
     private HibernateConfiguration hibernateConfiguration;
+
 
     private Session session;
 

@@ -8,6 +8,8 @@ public class Knowledge {
 
     @Column(name = "NAME", nullable = false)
     private String name;
+    @Column(name = "GRADE", nullable = false)
+    private Integer grade;
 
     public String getName() {
         return name;
@@ -15,5 +17,13 @@ public class Knowledge {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
     }
 }
