@@ -8,7 +8,7 @@ import java.util.List;
 public class Account extends Base {
 
     @Column(name = "NAME", nullable = false)
-    private String name;
+    private String username;
     @Column(name = "EMAIL", nullable = false)
     private String email;
     @Column(name = "PASSWORD", nullable = false)
@@ -37,8 +37,8 @@ public class Account extends Base {
     private String obs;
     @Column(name = "COURSE", nullable = false)
     private String course;
-    @Column(name = "BUSY", nullable = false)
-    private String busy;
+	@Column(name = "AVAILABLE", nullable = false)
+    private String available;
 	@Column(name = "UNIVERSITY", nullable = false)
     @OneToOne
     private University university;
@@ -47,12 +47,20 @@ public class Account extends Base {
     @OneToMany
     private List<Knowledge> knowledgeList;
 
-    public String getName() {
-        return name;
+    public String getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(String available) {
+		this.available = available;
+	}
+    
+    public String getUsername() {
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getEmail() {

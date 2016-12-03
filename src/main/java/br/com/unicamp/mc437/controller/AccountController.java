@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import br.com.unicamp.mc437.model.Account;
+import br.com.unicamp.mc437.model.LoginDTO;
 import br.com.unicamp.mc437.service.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -62,9 +63,9 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/authenticate", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public ResponseEntity<Account> authenticate(@RequestBody Account account, HttpServletRequest request) {
-        final Account user = accountService.accountByEmailAndPassword(account.getEmail(), account.getPassword());
-
+    public ResponseEntity<LoginDTO> authenticate(@RequestBody Account account, HttpServletRequest request) {
+        final LoginDTO user = accountService.authenticate(account.getEmail(), account.getPassword());
+        
         request.getSession(true);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
