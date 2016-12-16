@@ -5,8 +5,20 @@ import java.util.List;
 
 @Entity
 @Table(name = "ACCOUNT")
-public class Account extends Base {
+public class Account{
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Column(name = "ID", unique = true, nullable = false)
+    @Id
+    @GeneratedValue
+    private Long id;
     @Column(name = "NAME", nullable = false)
     private String username;
     @Column(name = "EMAIL", nullable = false)
@@ -15,31 +27,30 @@ public class Account extends Base {
     private String password;
     @Column(name = "PHONE", nullable = false)
     private String phone;
-    @Column(name = "HOME_PHONE", nullable = false)
+    @Column(name = "HOME_PHONE")
     private String homephone;
     @Column(name = "CPF", nullable = false)
     private String cpf;
     @Column(name = "RG", nullable = false)
     private String rg;
-    @Column(name = "INTERNSHIP", nullable = false)
+    @Column(name = "INTERNSHIP")
     private String internship;
-    @Column(name = "UNDERGRADUATE", nullable = false)
+    @Column(name = "UNDERGRADUATE")
     private String undergraduate;
-    @Column(name = "AVAILABILITY", nullable = false)
+    @Column(name = "AVAILABILITY")
     private String availability;
-    @Column(name = "LINKEDIN", nullable = false)
+    @Column(name = "LINKEDIN")
     private String linkedin;
     @Column(name = "ADDRESS", nullable = false)
     private String address;
-    @Column(name = "CONPEC", nullable = false)
+    @Column(name = "CONPEC")
     private String conpec;
-    @Column(name = "OBS", nullable = false)
+    @Column(name = "OBS")
     private String obs;
-    @Column(name = "COURSE", nullable = false)
+    @Column(name = "COURSE")
     private String course;
-	@Column(name = "AVAILABLE", nullable = false)
+	@Column(name = "AVAILABLE")
     private String available;
-	@Column(name = "UNIVERSITY", nullable = false)
     @OneToOne
     private University university;
     @OneToMany

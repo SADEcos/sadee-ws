@@ -75,6 +75,7 @@ public class AccountDAOImpl extends AbstractDAO implements AccountDAO {
 
     @Override
     public void criar(Account account) {
+        buildQuery();
         session.saveOrUpdate(account);
     }
 }

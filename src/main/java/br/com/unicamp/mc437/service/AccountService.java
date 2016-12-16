@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.assertj.core.util.DateUtil;
 import org.mindrot.jbcrypt.BCrypt;
 
 import br.com.unicamp.mc437.model.Account;
@@ -45,7 +44,7 @@ public class AccountService {
         	String token = TokenGenerator.newSessionId();
         	Calendar calendar = Calendar.getInstance();
         	Date date = calendar.getTime();
-        	calendar.add(Calendar.HOUR, 2);
+            calendar.add(Calendar.HOUR, 2);
         	Date expirationDate = calendar.getTime();
         	
         	SessionToken session = new SessionToken(token, date, expirationDate);

@@ -12,7 +12,11 @@ import br.com.unicamp.mc437.dao.AbstractDAO;
 import br.com.unicamp.mc437.dao.AccountDAO;
 import br.com.unicamp.mc437.dao.SessionTokenDAO;
 import br.com.unicamp.mc437.model.SessionToken;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.Entity;
+
+@Repository
 public class SessionTokenDAOImpl extends AbstractDAO implements SessionTokenDAO {
 
 	@Autowired

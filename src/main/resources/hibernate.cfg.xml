@@ -5,10 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.username">
-            sade
-        </property>
-        <property name="hibernate.connection.password">
-            Root123456
+            root
         </property>
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost:3306/sade_db

@@ -1,19 +1,30 @@
 package br.com.unicamp.mc437.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Project extends Base{
+public class Project {
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Column(name = "ID", unique = true, nullable = false)
+    @Id
+    @GeneratedValue
+    private Long id;
 
     @Column(name = "NAME", nullable = false)
     private String name;
 
     @ManyToOne
-    private List<Account> accountList;
+    private Account account;
 
     public String getName() {
         return name;
@@ -23,11 +34,11 @@ public class Project extends Base{
         this.name = name;
     }
 
-    public List<Account> getAccountList() {
-        return accountList;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountList(List<Account> accountList) {
-        this.accountList = accountList;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
