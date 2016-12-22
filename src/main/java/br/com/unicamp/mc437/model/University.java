@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "UNIVERSITY")
+@Table
 public class University {
 
     public Long getId() {
@@ -16,15 +16,15 @@ public class University {
         this.id = id;
     }
 
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Account> accountList;
 
     public String getName() {

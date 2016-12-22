@@ -3,7 +3,7 @@ package br.com.unicamp.mc437.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "KNOWLEDGE")
+@Table
 public class Knowledge {
 
     public Long getId() {
@@ -14,14 +14,14 @@ public class Knowledge {
         this.id = id;
     }
 
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(nullable = false)
     private String name;
-    @Column(name = "GRADE", nullable = false)
+    @Column(nullable = false)
     private Integer grade;
 
     public String getName() {

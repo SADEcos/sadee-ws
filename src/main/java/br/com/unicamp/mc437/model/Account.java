@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "ACCOUNT")
+@Table
 public class Account{
 
     public Long getId() {
@@ -15,47 +15,47 @@ public class Account{
         this.id = id;
     }
 
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "NAME", nullable = false)
+    @Column(nullable = false)
     private String username;
-    @Column(name = "EMAIL", nullable = false)
+    @Column(nullable = false)
     private String email;
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(nullable = false)
     private String password;
-    @Column(name = "PHONE", nullable = false)
+    @Column(nullable = false)
     private String phone;
-    @Column(name = "HOME_PHONE")
+    @Column
     private String homephone;
-    @Column(name = "CPF", nullable = false)
+    @Column(nullable = false)
     private String cpf;
-    @Column(name = "RG", nullable = false)
+    @Column(nullable = false)
     private String rg;
-    @Column(name = "INTERNSHIP")
+    @Column
     private String internship;
-    @Column(name = "UNDERGRADUATE")
+    @Column
     private String undergraduate;
-    @Column(name = "AVAILABILITY")
+    @Column
     private String availability;
-    @Column(name = "LINKEDIN")
+    @Column
     private String linkedin;
-    @Column(name = "ADDRESS", nullable = false)
+    @Column(nullable = false)
     private String address;
-    @Column(name = "CONPEC")
+    @Column
     private String conpec;
-    @Column(name = "OBS")
+    @Column
     private String obs;
-    @Column(name = "COURSE")
+    @Column
     private String course;
-	@Column(name = "AVAILABLE")
+	@Column
     private String available;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL )
     private University university;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL )
     private List<Project> projects;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL )
     private List<Knowledge> knowledgeList;
 
     public String getAvailable() {

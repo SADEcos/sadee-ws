@@ -8,11 +8,9 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface AccountDAO {
+public interface AccountDAO extends AbstractDAO{
 
     Account getAccountById(Long id);
-
-    void criar(Account account);
 
     Account getAccountByEmailAndPassword(String email, String password);
 

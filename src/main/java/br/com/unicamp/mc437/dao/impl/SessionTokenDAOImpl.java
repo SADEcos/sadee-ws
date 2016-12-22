@@ -2,8 +2,10 @@ package br.com.unicamp.mc437.dao.impl;
 
 import java.util.Date;
 
+import org.hibernate.CacheMode;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,22 +19,15 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Entity;
 
 @Repository
-public class SessionTokenDAOImpl extends AbstractDAO implements SessionTokenDAO {
+public class SessionTokenDAOImpl  implements SessionTokenDAO {
 
-	@Autowired
-    private HibernateConfiguration hibernateConfiguration;
-	
-	private Session session;
-	
+    private SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
+
 	private Criteria buildQuery() {
-        session = hibernateConfiguration.getSessionFactory().openSession();
-        return session.createCriteria(SessionTokenDAO.class);
+		Session session = sessionFactory.openSession();
+		session.setCacheMode(CacheMode.IGNORE);
+		return session.createCriteria(getClass());
     }
-	
-	@Override
-	public void create(SessionToken token) {
-		session.saveOrUpdate(token);
-	}
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -42,6 +37,11 @@ public class SessionTokenDAOImpl extends AbstractDAO implements SessionTokenDAO 
 		query.add(Restrictions.eq("token", token));
 		query.add(Restrictions.sizeGe("expirationDate", date.getMinutes()));
 		return (SessionToken) query.uniqueResult();
+	}
+
+	@Override
+	public void saveOrUpdate(Object object) {
+		sessionFactory.getCurrentSession().saveOrUpdate(object);
 	}
 	
 	

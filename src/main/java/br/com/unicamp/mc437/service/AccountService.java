@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Entity;
+
 @Service
 public class AccountService {
 
@@ -48,7 +50,7 @@ public class AccountService {
         	Date expirationDate = calendar.getTime();
         	
         	SessionToken session = new SessionToken(token, date, expirationDate);
-        	sessionTokenDAO.create(session);
+        	sessionTokenDAO.saveOrUpdate(session);
         	
         	return new LoginDTO(user, token);
         }
@@ -59,7 +61,7 @@ public class AccountService {
     public void cadastro(Account account) {
         String hashedPwd = BCrypt.hashpw(account.getPassword(), BCrypt.gensalt());
         account.setPassword(hashedPwd);
-        accountDAO.criar(account);
+        accountDAO.saveOrUpdate(account);
     }
     
 }

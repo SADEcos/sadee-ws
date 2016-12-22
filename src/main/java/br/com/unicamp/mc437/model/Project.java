@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table
 public class Project {
 
     public Long getId() {
@@ -15,12 +16,12 @@ public class Project {
         this.id = id;
     }
 
-    @Column(name = "ID", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne

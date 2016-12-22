@@ -20,5 +20,12 @@
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <mapping class="br.com.unicamp.mc437.model.Account"></mapping>
+        <mapping class="br.com.unicamp.mc437.model.Knowledge"></mapping>
+        <mapping class="br.com.unicamp.mc437.model.SessionToken"></mapping>
+        <mapping class="br.com.unicamp.mc437.model.Project"></mapping>
+        <mapping class="br.com.unicamp.mc437.model.University"></mapping>
+
     </session-factory>
 </hibernate-configuration>

@@ -4,10 +4,8 @@ import br.com.unicamp.mc437.model.SessionToken;
 
 import javax.persistence.Entity;
 
-public interface SessionTokenDAO {
+public interface SessionTokenDAO extends AbstractDAO {
 
-	void create(SessionToken session);
-	
 	SessionToken get(String token);
 	
 }
